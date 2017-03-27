@@ -1,49 +1,10 @@
 import sys
 from collections import defaultdict as ddict
-
-def load(filename):
-    try: openfile = open(filename, "r")
-    except IOError: print("File '"+filename+"' not found."); sys.exit(1)
-    else: listing = ddict(int,enumerate(map(ord,list(openfile.read())))); openfile.close(); return listing
-    
-def get(data,id):
-    if id==ord("1"):
-        return 1
-    if ord("a")<=id<=ord("c"):
-        return data.__dict__[chr(id)]
-    if ord("A")<=id<=ord("C"):
-        return data.listing[data.__dict__[chr(id).lower()]]
-    if id==ord("o"):
-        return ord(sys.stdin.read(1))        #blocks and waits for an input if buffer empty, reads 1 byte
-    if id==ord("i"):
-        return data.ip
-    try: id = chr(id)
-    except ValueError: 
-        try: id = unichr(id)
-        except ValueError: id = str(id)
-    raise ValueError(id + "is an invalid source argument at character "+str(data.ip+2)+".")
-
-def put(data,id,val):
-    if ord("a")<=id<=ord("c"):
-        data.__dict__[chr(id)]=val
-    elif ord("A")<=id<=ord("C"):
-        data.listing[data.__dict__[chr(id).lower()]]=val
-    elif id==ord("o"):
-        try: sys.stdout.write(chr(val));sys.stdout.flush()
-        except ValueError: 
-            try: sys.stdout.write(unichr(val));sys.stdout.flush()
+``````````wwecv f7fc 
             except ValueError: pass
     elif id==ord("i"):
         data.ip=val
-    else:
-        try: id = chr(id)
-        except ValueError: 
-            try: id = unichr(id)
-            except ValueError: id = str(id)
-        raise ValueError(id + " is an invalid target argument at character "+str(data.ip+1)+".")
-        
-def run(data):
-    while data.ip<=max(data.listing.keys()):
+    else:1`
         x=data.listing[data.ip]
         y=data.listing[data.ip+1]
         z=data.listing[data.ip+2]
