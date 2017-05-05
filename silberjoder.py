@@ -47,11 +47,12 @@ def run(data):
         x=data.listing[data.ip]
         y=data.listing[data.ip+1]
         z=data.listing[data.ip+2]
-        #print data.ip,chr(x),data.c,data.listing[data.c]
-        #for i in range(max(data.listing.keys())):
+        #print "i",data.ip,"a",data.a,"A",data.listing[data.a],"b",data.b,"B",data.listing[data.b],"c",data.c,"C",data.listing[data.c]
+        #for i in range(max(data.listing.keys())+1):
         #    sys.stdout.write(str(data.listing[i])+"|")
-        #print ""
-        #print chr(x),chr(y),chr(z)
+        #print "\n"
+        #if x>0 and y>0 and z>0:
+        #    print chr(x),chr(y),chr(z)
         if x==ord("="):
             try:
                 put(data,y,get(data,z))

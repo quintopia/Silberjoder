@@ -62,7 +62,7 @@ Devil: He left like two minutes ago. What are you waiting for? Go on...get start
 1. To syncretize the disparate (yet related) language features of Self-Modifying Brainfuck and Aubergine
 2. To do so in such a way as to remove some of the difficulties of programming in either language.
 3. To do so in such a way that all extant Aubergine and Self-Modifying Brainfuck programs are valid Silberjoder programs /whose behaviors are unchanged/.
-4. To do so in such a way that SIlberjoder programs are more concise and simple to trace than those of either of the original languages.
+4. To do so in such a way that Silberjoder programs are more concise and simple to trace than those of either of the original languages.
 
 There are some challenges to doing this. These are:
 1. Instructions require a different number of characters in each source language.
@@ -94,11 +94,11 @@ current design achieves this.
  
  Aubergine is another self-modifying language (invented by boily) in which the program being executed is stored on the tape, and changes to the program 
  take immediate effect. The tape is infinite in neither direction: its length is identical with the length of the program. In order to be Turing-complete 
- then, tape cells must be bounded: the language spec requires that they be able to contain /any/ integer.
+ then, tape cells must be unbounded: the language spec requires that they be able to contain /any/ integer.
  
  There are two registers named 'a' and 'b' which can also serve as pointers to the data tape through indirection as 'A' and 'B'. 'a' and 'b' are both
  initially zero. Therefore, 'A' and 'B' are both initially the first character of the program. It is an error to use 'A' or 'B' when 'a' or 'b' would
- points to a position somewhere outside of the tape.
+ point to a position somewhere outside of the tape.
  
  An Aubergine instruction is three characters long, and consists of a character each to tell the command, the target, and the source.
  After each instruction, the instruction pointer is incremented by 3.
@@ -141,7 +141,7 @@ current design achieves this.
  target and source, then they will be interpreted as the '+' or '-' commands of Aubergine. Otherwise, they are '+' or '-' of
  brainfuck.
  
- However, it doesn't quite integrate the features of the languages to an extent that it feel like a new language, nor does it
+ However, it doesn't quite integrate the features of the languages to an extent that it feels like a new language, nor does it
  provide for the design goals of simplifying the authorship of programs beyond the original languages or ensuring that programs
  in the new language will be more concise, so beyond this simple plan we will add a few new simplifying assumptions:
  1. The tape is both left- and right-infinite. Registers can be dereferenced at ANY integer value, including negative values.
@@ -191,7 +191,7 @@ Printing a decimal number in Silberjoder: 0>,[[-[-[-[-[-[-[-[-[-[-[>+<=ib]<+>]<+
  If you're going to write a program in Silberjoder, your best bet is to think about how you would do it in unbounded signed brainfuck first, keeping in mind that
  - you never need to use the addition algorithm "[>+<-]" or the copy algorithm "[>+>+<<-]>>[<<+>>-]". With judicious placement of register a, "+CA" 
     and "=CA" are pretty much always shorter and faster. 
- - you need use the unbounded signed cell clearing algorithm (which is very slow). "-CC" always clears the current cell at the DP.
+ - you never need use the unbounded signed cell clearing algorithm (which is very slow). "-CC" always clears the current cell at the DP.
  - you can always break out of the inner loop of a nested loop or continue an outer loop by using things like "=ia" and ":aC", without worrying about 
     repeating the test for breaking in every loop. (E.g. the decimal number printing program above) 
  - you can use the fact that the program starts on the tape by appending or prepending any constant literals you may need during execution (e.g. the "0" and the
